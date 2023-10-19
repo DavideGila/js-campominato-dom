@@ -25,6 +25,7 @@ myCampoMinato()
 function myCampoMinato(){
 const startBtn = document.querySelector('button');
 const NUM_BOMBS = 16;
+let score = 0;
 
     
 startBtn.addEventListener('click', function(){
@@ -54,7 +55,10 @@ function appearSquare(squareNum, numTotalSquare, allBombs){
             square.classList.add('square-bg');
             square.style.color = 'black';
             square.removeEventListener('click', squareClick);
-            console.log(this.innerHTML); 
+            console.log(this.innerHTML);
+            score++;
+            let result = document.getElementById('score');
+            result.innerHTML = `Il tuo punteggio è: ${score}`;
         }
     })
     return square;
