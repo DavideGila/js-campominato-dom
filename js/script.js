@@ -36,6 +36,7 @@ startBtn.addEventListener('click', function(){
         let square = appearSquare(i, totalSquare);
         playground.append(square);
     }
+    let allBombs = generateBombs(totalSquare);
 });
 
 function appearSquare(squareNum, totalSquare){
@@ -56,9 +57,11 @@ function appearSquare(squareNum, totalSquare){
 function generateBombs(totalSquare){
     const bombsArr = [];
     while(bombsArr.length < NUM_BOMBS){
-        let bomb = getRndInteger (1,totalSquare);
+        let bomb = getRndInteger (1, totalSquare);
         console.log(bomb);
-        if (!bombsArr.includes(bomb));
+        if (!bombsArr.includes(bomb)){
+            bombsArr.push(bomb);
+        };
     }
     return bombsArr
 }
@@ -67,7 +70,3 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 };
 }
-
-
-
-
