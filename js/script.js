@@ -45,13 +45,15 @@ function appearSquare(squareNum, numTotalSquare, allBombs){
     square.style.width = `calc(100% / ${squareWidth})`;
     square.style.height = square.style.width;
     square.innerHTML = squareNum + 1;
-    square.addEventListener('click', function(){
-    let newConst = squareNum + 1;
+    square.addEventListener('click', function squareClick(){
+    const newConst = squareNum + 1;
         if (allBombs.includes(newConst)){
             square.classList.add('bg-danger');
+            square.removeEventListener('click', squareClick);
         } else {
             square.classList.add('square-bg');
             square.style.color = 'black';
+            square.removeEventListener('click', squareClick);
             console.log(this.innerHTML); 
         }
     })
