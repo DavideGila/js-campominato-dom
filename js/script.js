@@ -28,36 +28,40 @@ const NUM_BOMBS = 16;
 
     
 startBtn.addEventListener('click', function(){
-    const numTotalSquare = document.getElementById('difficulty').value;
-    const totalSquare = numTotalSquare;
+    const numTotalSquare = parseInt(document.getElementById('difficulty').value);
     const playground = document.getElementById('playground');
     playground.innerHTML = '';
-    for(let i = 0; i < totalSquare; i++){
-        let square = appearSquare(i, totalSquare);
+    let allBombs = generateBombs(numTotalSquare);
+    for(let i = 0; i < numTotalSquare; i++){
+        let square = appearSquare(i, numTotalSquare, allBombs);
         playground.append(square);
     }
-    let allBombs = generateBombs(totalSquare);
 });
 
-function appearSquare(squareNum, totalSquare){
-    const squareWidth = Math.sqrt(totalSquare)
+function appearSquare(squareNum, numTotalSquare, allBombs){
+    const squareWidth = Math.sqrt(numTotalSquare)
     const square = document.createElement('div');
     square.classList.add('square');
     square.style.width = `calc(100% / ${squareWidth})`;
     square.style.height = square.style.width;
     square.innerHTML = squareNum + 1;
     square.addEventListener('click', function(){
-        square.classList.add('square-bg');
-        square.style.color = 'black';
-        console.log(this.innerHTML);
+    let newConst = squareNum + 1;
+        if (allBombs.includes(newConst)){
+            square.classList.add('bg-danger');
+        } else {
+            square.classList.add('square-bg');
+            square.style.color = 'black';
+            console.log(this.innerHTML); 
+        }
     })
     return square;
 }
 
-function generateBombs(totalSquare){
+function generateBombs(numTotalSquare){
     const bombsArr = [];
     while(bombsArr.length < NUM_BOMBS){
-        let bomb = getRndInteger (1, totalSquare);
+        let bomb = getRndInteger (1, numTotalSquare);
         console.log(bomb);
         if (!bombsArr.includes(bomb)){
             bombsArr.push(bomb);
