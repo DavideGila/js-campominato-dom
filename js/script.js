@@ -24,6 +24,7 @@ myCampoMinato()
 
 function myCampoMinato(){
 const startBtn = document.querySelector('button');
+const NUM_BOMBS = 16;
 
     
 startBtn.addEventListener('click', function(){
@@ -51,6 +52,20 @@ function appearSquare(squareNum, totalSquare){
     })
     return square;
 }
+
+function generateBombs(totalSquare){
+    const bombsArr = [];
+    while(bombsArr.length < NUM_BOMBS){
+        let bomb = getRndInteger (1,totalSquare);
+        console.log(bomb);
+        if (!bombsArr.includes(bomb));
+    }
+    return bombsArr
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+};
 }
 
 
